@@ -67,10 +67,10 @@ var updateBooksTable = function(books) {
     isbnColumn.innerText = book.number;
 
     var titleColumn = document.createElement('td');
-    titleColumn.innerHTML = book.title;
+    titleColumn.innerHTML = book.district;
 
     var authorColumn = document.createElement('td');
-    authorColumn.innerHTML = book.author;
+    authorColumn.innerHTML = book.address;
 
     var tableRow = document.createElement('tr');
     tableRow.appendChild(isbnColumn);
