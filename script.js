@@ -102,7 +102,7 @@ var searchBooks = function() {
 searchInput.oninput = searchBooks;
 
 var updateBookCount = function(numBooks) {
-  bookCountBadge.innerText = numBooks + ' books';
+  bookCountBadge.innerText = numBooks + ' persons';
 };
 var hideElement  = function(element) {
   element.className += ' hidden';
