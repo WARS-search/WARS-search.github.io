@@ -1,10 +1,9 @@
 var search, results, allBooks = [];
 
-var indexOnAddressCheckbox = document.getElementById('indexOnAddressCheckbox');
+var indexOnAuthorCheckbox = document.getElementById('indexOnAuthorCheckbox');
 var indexStrategySelect = document.getElementById('indexStrategySelect');
 var removeStopWordsCheckbox = document.getElementById('removeStopWordsCheckbox');
-var indexOnDistrictCheckbox = document.getElementById('indexOnDistrictCheckbox');
-var indexOnDateCheckbox = document.getElementById('indexOnDateCheckbox');
+var indexOnTitleCheckbox = document.getElementById('indexOnTitleCheckbox');
 var useStemmingCheckbox = document.getElementById('useStemmingCheckbox');
 var sanitizerSelect = document.getElementById('sanitizerSelect');
 var tfIdfRankingCheckbox = document.getElementById('tfIdfRankingCheckbox');
@@ -14,16 +13,16 @@ var rebuildAndRerunSearch = function() {
   searchBooks();
 };
 
-indexOnAddressCheckbox.onchange = rebuildAndRerunSearch;
+indexOnAuthorCheckbox.onchange = rebuildAndRerunSearch;
 indexStrategySelect.onchange = rebuildAndRerunSearch;
 removeStopWordsCheckbox.onchange = rebuildAndRerunSearch;
-indexOnDistrictCheckbox.onchange = rebuildAndRerunSearch;
+indexOnTitleCheckbox.onchange = rebuildAndRerunSearch;
 useStemmingCheckbox.onchange = rebuildAndRerunSearch;
 sanitizerSelect.onchange = rebuildAndRerunSearch;
 tfIdfRankingCheckbox.onchange = rebuildAndRerunSearch;
 
 var rebuildSearchIndex = function() {
-  search = new JsSearch.Search('number');
+  search = new JsSearch.Search('isbn');
 
   if (useStemmingCheckbox.checked) {
     search.tokenizer = new JsSearch.StemmingTokenizer(stemmer, search.tokenizer);
@@ -36,19 +35,16 @@ var rebuildSearchIndex = function() {
   search.sanitizer =  eval('new ' + sanitizerSelect.value + '()');;
 
   if (tfIdfRankingCheckbox.checked) {
-    search.searchIndex = new JsSearch.TfIdfSearchIndex('number');
+    search.searchIndex = new JsSearch.TfIdfSearchIndex('isbn');
   } else {
     search.searchIndex = new JsSearch.UnorderedSearchIndex();
   }
 
-  if (indexOnDistrictCheckbox.checked) {
-    search.addIndex('district');
+  if (indexOnTitleCheckbox.checked) {
+    search.addIndex('title');
   }
-  if (indexOnAddressCheckbox.checked) {
-    search.addIndex('address');
-  }
-  if (indexOnDateCheckbox.checked) {
-    search.addIndex('address');
+  if (indexOnAuthorCheckbox.checked) {
+    search.addIndex('author');
   }
 
   search.addDocuments(allBooks);
@@ -67,23 +63,19 @@ var updateBooksTable = function(books) {
   for (var i = 0, length = books.length; i < length; i++) {
     var book = books[i];
 
-    var numberColumn = document.createElement('td');
-    numberColumn.innerText = book.number;
+    var isbnColumn = document.createElement('td');
+    isbnColumn.innerText = book.number;
 
-    var districtColumn = document.createElement('td');
-    districtColumn.innerHTML = book.district;
+    var titleColumn = document.createElement('td');
+    titleColumn.innerHTML = book.district;
 
-    var addressColumn = document.createElement('td');
-    addressColumn.innerHTML = book.address;
-
-    var dateColumn = document.createElement('td');
-    dateColumn.innerHTML = book.date;
+    var authorColumn = document.createElement('td');
+    authorColumn.innerHTML = book.address;
 
     var tableRow = document.createElement('tr');
-    tableRow.appendChild(numberColumn);
-    tableRow.appendChild(districtColumn);
-    tableRow.appendChild(addressColumn);
-    tableRow.appendChild(dateColumn);
+    tableRow.appendChild(isbnColumn);
+    tableRow.appendChild(titleColumn);
+    tableRow.appendChild(authorColumn);
 
     indexedBooksTBody.appendChild(tableRow);
   }
