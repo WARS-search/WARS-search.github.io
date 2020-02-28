@@ -72,7 +72,7 @@ var updateBooksTable = function(books) {
     var authorColumn = document.createElement('td');
     authorColumn.innerHTML = book.address;
 
-    var daterColumn = document.createElement('td');
+    var dateColumn = document.createElement('td');
     dateColumn.innerHTML = book.date;
 
     var tableRow = document.createElement('tr');
