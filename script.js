@@ -128,5 +128,5 @@ xmlhttp.onreadystatechange = function() {
     updateBooksTable(allBooks);
   }
 }
-xmlhttp.open('GET', 'books.json', true);
+xmlhttp.open('GET', 'books2.json', true);
 xmlhttp.send();
