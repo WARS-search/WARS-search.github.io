@@ -79,7 +79,7 @@ var updateBooksTable = function(books) {
     tableRow.appendChild(isbnColumn);
     tableRow.appendChild(titleColumn);
     tableRow.appendChild(authorColumn);
-    tableRow.appendChild(daterColumn);
+    tableRow.appendChild(dateColumn);
 
     indexedBooksTBody.appendChild(tableRow);
   }
