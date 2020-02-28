@@ -72,10 +72,14 @@ var updateBooksTable = function(books) {
     var authorColumn = document.createElement('td');
     authorColumn.innerHTML = book.address;
 
+    var daterColumn = document.createElement('td');
+    dateColumn.innerHTML = book.date;
+
     var tableRow = document.createElement('tr');
     tableRow.appendChild(isbnColumn);
     tableRow.appendChild(titleColumn);
     tableRow.appendChild(authorColumn);
+    tableRow.appendChild(daterColumn);
 
     indexedBooksTBody.appendChild(tableRow);
   }
