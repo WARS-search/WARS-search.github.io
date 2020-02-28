@@ -64,7 +64,7 @@ var updateBooksTable = function(books) {
     var book = books[i];
 
     var isbnColumn = document.createElement('td');
-    isbnColumn.innerText = book.isbn;
+    isbnColumn.innerText = book.number;
 
     var titleColumn = document.createElement('td');
     titleColumn.innerHTML = book.title;
