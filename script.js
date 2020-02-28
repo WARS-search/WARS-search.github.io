@@ -64,21 +64,18 @@ var updateBooksTable = function(books) {
     var book = books[i];
 
     var isbnColumn = document.createElement('td');
-    isbnColumn.innerText = book.number;
+    isbnColumn.innerText = book.isbn;
 
     var titleColumn = document.createElement('td');
-    titleColumn.innerHTML = book.district;
+    titleColumn.innerHTML = book.title;
 
     var authorColumn = document.createElement('td');
-    authorColumn.innerHTML = book.address;
-
-
+    authorColumn.innerHTML = book.author;
 
     var tableRow = document.createElement('tr');
     tableRow.appendChild(isbnColumn);
     tableRow.appendChild(titleColumn);
     tableRow.appendChild(authorColumn);
-
 
     indexedBooksTBody.appendChild(tableRow);
   }
